@@ -1,4 +1,4 @@
-import React, { use, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Login from "./components1/Auth/Login";
 import EmployeeDashboard from "./components1/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components1/Dashboard/AdminDashboard";
@@ -13,7 +13,7 @@ const App = () => {
 
   const [user, setUser] = useState(null);
   const [loggedInUserData, setloggedInUserData] = useState(null);
-  const [userData , setUserData] = useContext(AuthContext);
+  const [userData] = useContext(AuthContext);
   
 
   /* useEffect(() =>{
@@ -40,36 +40,41 @@ console.log("logged in user data", loggedInUserData)
      //const employee = authData.employees.find((e) => email == e.email && password == e.password);
     //}
     
-    // 
+   console.log("Login attempt with:", email, password);
+   console.log("userData available:", userData);
+    
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
       localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
     } 
-     else if (userData) {
+     else if (userData && Array.isArray(userData)) {
+      console.log("Searching in userData array:", userData);
       const employee = userData.find(
         (e) => email == e.email && password == e.password
       );
-      const admin = userData.find(
-        (e) => email == e.email && password == e.password
-      );
+      
       if (employee) {
         setUser("employee");
         setloggedInUserData(employee)
-        console.log("Employee", employee)
+        console.log("Employee found:", employee)
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "employee", })
+          JSON.stringify({ role: "employee", data: employee })
         );
+      } else {
+        console.log("No matching employee found");
+        alert("Invalid credentials");
       }
     } else {
-      alert("Invalid ceredentials");
+      console.log("userData is not an array:", userData);
+      alert("Invalid credentials");
     }
   };
 
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user == "admin" ? <AdminDashboard changeUser={setUser} /> :( user== 'employee' ? <EmployeeDashboard  changeUser={setUser}data={loggedInUserData}/> :' null')}
+      {user == "admin" ? <AdminDashboard changeUser={setUser} /> :( user== 'employee' ? <EmployeeDashboard changeUser={setUser} data={loggedInUserData}/> :' null')}
     </>
   );
 };

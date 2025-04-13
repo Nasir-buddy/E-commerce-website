@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const AllTask = (elem) => {
-  const [userData , setUserData] = useContext(AuthContext);
+  const [userData] = useContext(AuthContext);
+  console.log("elem", elem)
   return (
     <div className="bg-[#1c1c1c] p-5 mt-5 rounded h-60">
       <div className="bg-blue-300 rounded px-4 flex justify-between text-black py-2 mb-6 border-purple-400">
@@ -14,7 +15,7 @@ const AllTask = (elem) => {
       </div>
 
       <div className="h-[80%] overflow-auto">
-        {userData.map(function (elem , idx) {
+        {userData && Array.isArray(userData) ? userData.map(function (elem, idx) {
           return (
             <div key={idx} className="border-yellow-200 border-2 mb-6 py-2 px-4 flex center justify-between ">
               <h2 className="w-1/5 text-lg gap-1px text-white">{elem.name}</h2>
@@ -24,7 +25,7 @@ const AllTask = (elem) => {
               <h5 className="w-1/5 text-amber-400">{elem.taskNumbers.failed}</h5>
             </div>
           );
-        })}
+        }) : <div className="text-white">No employee data available</div>}
       </div>
     </div>
   );

@@ -5,11 +5,15 @@ import FailedTask from "./FailedTask";
 import CompleteTask from "./CompleteTask";
 
 const TaskList = ({data}) => {
+  if (!data || !data.tasks) {
+    return <div>Loading tasks...</div>;
+  }
+  
   return (
     <div
       id="tasklist"
       className="h-[50%] over x-auto justify overflow-auto w-full flex items-center justify-start gap-10 flex-nowrap mt-10">
-    {data. tasks.map((elem )=>{
+    {data.tasks.map((elem, idx )=>{
       if(elem.active){
         return <AcceptTask key ={idx} data={elem}/>
       }

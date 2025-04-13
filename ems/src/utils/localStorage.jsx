@@ -263,9 +263,9 @@ export const setlocalStorage = () => {
 
 export const getlocalStorage = () => {
   try {
-    const employees = JSON.parse(localStorage.getItem('employees')) || Employee;
-    const admin = JSON.parse(localStorage.getItem('admin')) || admin;
-    return { employees, admin };
+    const employees = JSON.parse(localStorage.getItem('employees')) || Employee.employees;
+    const admin2 = JSON.parse(localStorage.getItem('admin')) || admin;
+    return { employees, admin: admin2 };
   } catch (error) {
     console.error('Error reading from localStorage:', error);
     return { employees: Employee.employees, admin: admin };
