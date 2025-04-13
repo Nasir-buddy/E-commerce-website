@@ -14,7 +14,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setloggedInUserData] = useState(null);
   const [userData , setUserData] = useContext(AuthContext);
-  console.log(userData);
+  
 
   /* useEffect(() =>{
   if( authData){
@@ -34,7 +34,7 @@ const App = () => {
   }
 
  })
-
+console.log("logged in user data", loggedInUserData)
   const handleLogin = (email, password) => {
    //if(authData & Array.isArray(authData.employees)){
      //const employee = authData.employees.find((e) => email == e.email && password == e.password);

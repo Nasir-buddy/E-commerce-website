@@ -37,7 +37,7 @@ const [userData , setUserData] = useContext(AuthContext);
     data.forEach(function (elem) {
       if (assignTo == elem.name) {
         elem.tasks.push(newtask);
-        elem.taskNumbers.new = elem.taskNumbers.new+1
+        elem.taskNumbers.new = elem.taskNumbers.new +1
       }
     });
     setUserData(data)

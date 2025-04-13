@@ -235,19 +235,14 @@ const Employee = {
           "completed": false,
           "failed": true,
           "title": "Conduct workshop",
-          "description": "Couldn’t conduct scheduled upskilling workshop.",
+          "description": "Couldn't conduct scheduled upskilling workshop.",
           "date": "2025-03-28",
           "category": "Training"
         }
       ]
     }
   ],
-  "admin": {
-    "id": 1,
-    "email": "admin@example.com",
-    "password": "123"
-  }
-};
+  };
 
 const admin = [{
   "id": 1,

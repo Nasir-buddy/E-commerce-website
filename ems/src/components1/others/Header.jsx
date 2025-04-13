@@ -1,7 +1,7 @@
 import React from "react";
 
 const Header = (props) => {
-
+console.log("props in header", props)
   const logOutUser =() =>{
 localStorage.setItem('loggedInUser' , '')
 //window.location.reload()
