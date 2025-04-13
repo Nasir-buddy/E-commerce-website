@@ -33,7 +33,7 @@ const App = () => {
   setloggedInUserData(userData.data)
   }
 
- })
+ }, [])
 console.log("logged in user data", loggedInUserData)
   const handleLogin = (email, password) => {
    //if(authData & Array.isArray(authData.employees)){
